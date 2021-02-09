@@ -26,10 +26,9 @@ function App() {
   const [challenges, setChallenges] = useState(null);
 
   useEffect(() => {
-    const challenges = JSON.parse(localStorage.getItem("challenges"));
-    console.log(challenges)
-    setChallenges(challenges);
     getQuote();
+    const challenges = JSON.parse(localStorage.getItem("challenges"));
+    setChallenges(challenges);
   }, []);
 
   function saveChallege() {
@@ -76,7 +75,7 @@ function App() {
             index={index}
             title={item.title}
             startDate={item.startDate}
-            value={item.value}
+            value={160}
           />
         ))
         : null}

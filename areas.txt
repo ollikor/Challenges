@@ -1,0 +1,31 @@
+1-365
+
+1-40
+bronze - I
+
+40-80
+bronze II
+
+80-120
+bronze III
+
+120-160
+silver I
+
+160-200
+silver II
+
+200-240
+silver III
+
+240-280
+gold I
+
+280-320
+gold II
+
+320-365
+gold III
+
+365 -
+platin
