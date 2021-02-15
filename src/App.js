@@ -20,6 +20,7 @@ const quotes = [
   }
 ]
 function App() {
+  console.log('app')
   const [quote, setQuote] = useState(null);
   const [challenge, setChallenge] = useState(false);
   const [text, setText] = useState("");
@@ -30,6 +31,15 @@ function App() {
     const challenges = JSON.parse(localStorage.getItem("challenges"));
     setChallenges(challenges);
   }, []);
+
+  function getQuote() {
+    const random = Math.floor(Math.random() * quotes.length);
+    quotes.map((item, index) => {
+      if (index === random) {
+        setQuote(item);
+      }
+    });
+  }
 
   function saveChallege() {
     const date = new Date();
@@ -45,15 +55,6 @@ function App() {
         localStorage.setItem("challenges", JSON.stringify(challenge));
       }
     }
-  }
-
-  function getQuote() {
-    const random = Math.floor(Math.random() * quotes.length);
-    quotes.map((item, index) => {
-      if (index === random) {
-        setQuote(item);
-      }
-    });
   }
 
   return (
