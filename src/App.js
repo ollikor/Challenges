@@ -20,7 +20,6 @@ const quotes = [
   }
 ]
 function App() {
-  console.log('app')
   const [quote, setQuote] = useState(null);
   const [challenge, setChallenge] = useState(false);
   const [text, setText] = useState("");
@@ -76,7 +75,7 @@ function App() {
             index={index}
             title={item.title}
             startDate={item.startDate}
-            value={160}
+            value={10}
           />
         ))
         : null}

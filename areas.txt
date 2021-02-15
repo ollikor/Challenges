@@ -28,4 +28,4 @@ gold II
 gold III
 
 365 -
-platin
+diamond
