@@ -196,7 +196,9 @@ export function Card(props) {
   }
 
   function update() {
-    props.update();
+    if(props.updated === false) {
+      props.update();
+    }
   }
 
   return (

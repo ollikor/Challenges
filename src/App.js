@@ -29,7 +29,6 @@ function App() {
     getQuote();
     const challenges = JSON.parse(localStorage.getItem("challenges"));
     setChallenges(challenges);
-    console.log(challenges)
   }, []);
 
   function getQuote() {
@@ -43,7 +42,7 @@ function App() {
 
   function saveChallege() {
     const date = new Date();
-    const dateString = `${date.getUTCDate()}.${date.getUTCMonth() + 1}.${date.getFullYear()}`;
+    const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
     if (text !== "") {
       const challenges = JSON.parse(localStorage.getItem("challenges"));
@@ -52,9 +51,9 @@ function App() {
           id: Date.now(),
           title: text,
           startDate: dateString,
-          currentDate: dateString,
+          lastLoggedDate: date,
           value: 0,
-          logged: false
+          updated: false
         };
         localStorage.setItem("challenges", JSON.stringify([...challenges, challenge]));
         setChallenges([
@@ -66,9 +65,9 @@ function App() {
           id: Date.now(),
           title: text,
           startDate: dateString,
-          currentDate: dateString,
+          lastLoggedDate: date,
           value: 0,
-          logged: false
+          updated: false
         }];
         localStorage.setItem("challenges", JSON.stringify(challenge));
         setChallenges(challenge);
@@ -78,9 +77,13 @@ function App() {
   }
 
   function update(id) {
+    const date = new Date();
+    const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     const challenges = JSON.parse(localStorage.getItem("challenges"));
-    const newChallenges = challenges.map(obj => 
-      obj.id === id ? {...obj, value: obj.value + 1} : obj
+    const newChallenges = challenges.map(obj =>
+      obj.id === id ?
+        { ...obj, value: obj.value + 1, lastLoggedDate: date, updated: true }
+        : obj
     );
     localStorage.setItem("challenges", JSON.stringify(newChallenges));
     setChallenges(newChallenges)
@@ -105,8 +108,10 @@ function App() {
             index={index}
             title={item.title}
             startDate={item.startDate}
+            lastLoggedDate={item.lastLoggedDate}
             value={item.value}
-            update={()=> update(item.id)}
+            updated={item.updated}
+            update={() => update(item.id)}
           />
         ))
         : null}
