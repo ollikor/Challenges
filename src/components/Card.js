@@ -195,8 +195,12 @@ export function Card(props) {
     }
   }
 
+  function update() {
+    props.update();
+  }
+
   return (
-    <div onClick={() => alert('dsfa')} className="Card" style={background()}>
+    <div onClick={() => update()} className="Card" style={background()}>
       <span>Started {props.startDate} - {props.value} days</span>
       <h3 className="Card-title">{props.title}</h3>
       {progress()}

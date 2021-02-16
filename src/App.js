@@ -21,7 +21,7 @@ const quotes = [
 ]
 function App() {
   const [quote, setQuote] = useState(null);
-  const [challenge, setChallenge] = useState(false);
+  const [challenge, setChallenge] = useState(null);
   const [text, setText] = useState("");
   const [challenges, setChallenges] = useState(null);
 
@@ -29,6 +29,7 @@ function App() {
     getQuote();
     const challenges = JSON.parse(localStorage.getItem("challenges"));
     setChallenges(challenges);
+    console.log(challenges)
   }, []);
 
   function getQuote() {
@@ -47,14 +48,42 @@ function App() {
     if (text !== "") {
       const challenges = JSON.parse(localStorage.getItem("challenges"));
       if (challenges !== null) {
-        challenges.push({ title: text, startDate: dateString, value: 0 });
-        localStorage.setItem("challenges", JSON.stringify(challenges));
+        const challenge = {
+          id: Date.now(),
+          title: text,
+          startDate: dateString,
+          currentDate: dateString,
+          value: 0,
+          logged: false
+        };
+        localStorage.setItem("challenges", JSON.stringify([...challenges, challenge]));
+        setChallenges([
+          ...challenges,
+          challenge
+        ]);
       } else {
-        const challenge = [{ title: text, startDate: dateString, value: 0 }];
+        const challenge = [{
+          id: Date.now(),
+          title: text,
+          startDate: dateString,
+          currentDate: dateString,
+          value: 0,
+          logged: false
+        }];
         localStorage.setItem("challenges", JSON.stringify(challenge));
+        setChallenges(challenge);
       }
     }
     setChallenge(false);
+  }
+
+  function update(id) {
+    const challenges = JSON.parse(localStorage.getItem("challenges"));
+    const newChallenges = challenges.map(obj => 
+      obj.id === id ? {...obj, value: obj.value + 1} : obj
+    );
+    localStorage.setItem("challenges", JSON.stringify(newChallenges));
+    setChallenges(newChallenges)
   }
 
   return (
@@ -69,14 +98,15 @@ function App() {
           : null
         }
       </header>
-      {challenges !== null
-        ? challenges.map((item, index) => (
+      {challenges !== null ?
+        challenges.map((item, index) => (
           <Card
             key={index}
             index={index}
             title={item.title}
             startDate={item.startDate}
-            value={10}
+            value={item.value}
+            update={()=> update(item.id)}
           />
         ))
         : null}
@@ -92,10 +122,10 @@ function App() {
           onClick={() => setChallenge(!challenge)}
         >
           {
-          challenge === true ?
-          <FontAwesomeIcon icon={faTimes} />
-          :
-          <FontAwesomeIcon icon={faPlus} />
+            challenge === true ?
+              <FontAwesomeIcon icon={faTimes} />
+              :
+              <FontAwesomeIcon icon={faPlus} />
           }
         </button>
       </div>
