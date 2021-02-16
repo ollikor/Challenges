@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "./components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import "./App.css";
 
@@ -54,6 +54,7 @@ function App() {
         localStorage.setItem("challenges", JSON.stringify(challenge));
       }
     }
+    setChallenge(false);
   }
 
   return (
@@ -79,18 +80,25 @@ function App() {
           />
         ))
         : null}
-      {challenge ? (
-        <div className="Add-challenge">
-          <input onChange={(e) => setText(e.target.value)} />
-          <button className="Save-button" onClick={() => saveChallege()}>Save</button>
-        </div>
-      ) : null}
-      <button
-        className="Plus-button"
-        onClick={() => setChallenge(!challenge)}
-      >
-        <FontAwesomeIcon icon={faPlus} />
-      </button>
+      <div className="Add-challenge-container">
+        {challenge ? (
+          <div className="Add-challenge">
+            <input placeholder="Add challenge" onChange={(e) => setText(e.target.value)} />
+            <button className="Save-button" onClick={() => saveChallege()}>Save</button>
+          </div>
+        ) : null}
+        <button
+          className="Plus-button"
+          onClick={() => setChallenge(!challenge)}
+        >
+          {
+          challenge === true ?
+          <FontAwesomeIcon icon={faTimes} />
+          :
+          <FontAwesomeIcon icon={faPlus} />
+          }
+        </button>
+      </div>
     </div>
   );
 }
