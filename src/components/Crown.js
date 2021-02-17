@@ -13,7 +13,7 @@ export function Crown(props) {
         // If value is more than min, reduce min from value to get correct
         // percentage of current statusarea. 
         // example value is 100 days, min is 80 and max 120 in the current statusarea. 
-        // Value is more than days between min and max so percentage is over 100%.
+        // Without reduction value is more than days between min and max so percentage is over 100%.
         if (status.max !== null) {
             if (props.value > status.min) {
                 fixedDays = props.value - status.min;

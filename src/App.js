@@ -19,7 +19,7 @@ const quotes = [
     name: "Winston Churchill"
   }
 ]
-function App() {
+export function App() {
   const [quote, setQuote] = useState(null);
   const [challenge, setChallenge] = useState(null);
   const [text, setText] = useState("");
@@ -106,6 +106,7 @@ function App() {
           <Card
             key={index}
             index={index}
+            id={item.id}
             title={item.title}
             startDate={item.startDate}
             lastLoggedDate={item.lastLoggedDate}
@@ -138,4 +139,3 @@ function App() {
   );
 }
 
-export default App;

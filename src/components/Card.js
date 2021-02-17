@@ -1,15 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown, faGem } from "@fortawesome/free-solid-svg-icons";
+import { useState } from 'react';
 
+import { Modal } from "./Modal";
+import { ModalChild } from './ModalChild';
 import { Crown } from "./Crown";
 
 export function Card(props) {
 
+  const [modal, showModal] = useState(false);
+
   // Statuses
-  const bronze = { name: 'Bronze', statusMark:'&#x2160', color: '#cd7f32', margin: '10px' }
-  const silver = { name: 'Silver', statusMark:'&#x2160', color: '#C0C0C0', margin: '10px' }
-  const gold = { name: 'Gold', statusMark:'&#x21604', color: '#FFDF00', margin: '10px' }
-  const diamond = { name: 'diamond', statusMark:'&#x2160', color: '#66ccff', margin: '10px' }
+  const bronze = { name: 'Bronze', statusMark: '&#x2160', color: '#cd7f32', margin: '10px' }
+  const silver = { name: 'Silver', statusMark: '&#x2160', color: '#C0C0C0', margin: '10px' }
+  const gold = { name: 'Gold', statusMark: '&#x21604', color: '#FFDF00', margin: '10px' }
+  const diamond = { name: 'diamond', statusMark: '&#x2160', color: '#66ccff', margin: '10px' }
 
   // Check if index of card is even and set correct background.
   function background() {
@@ -98,17 +101,33 @@ export function Card(props) {
     }
   }
 
-  function update() {
+  function handleUpdate() {
+    // alert('update')
     if(props.updated === false) {
       props.update();
     }
   }
 
+  function handleDelete() {
+    const challenges = JSON.parse(localStorage.getItem("challenges"));
+    const newChallenges = challenges.filter(obj => obj.id !== props.id);
+    localStorage.setItem("challenges", JSON.stringify(newChallenges));
+  }
+
   return (
-    <div onClick={() => update()} className="Card" style={background()}>
+    <div onClick={() => showModal(!modal)} className="Card" style={background()}>
       <span>Started {props.startDate} - {props.value} days</span>
       <h3 className="Card-title">{props.title}</h3>
       <Crown status={checkStatus()} value={props.value} />
+      { modal ?
+        <Modal>
+          <ModalChild
+            title={props.title}
+            handleUpdate={() => handleUpdate()}
+            handleDelete={() => handleDelete()}
+          />
+        </Modal>
+        : null}
     </div>
   );
 };
