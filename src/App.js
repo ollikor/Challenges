@@ -124,6 +124,7 @@ export function App() {
           </div>
         ) : null}
         <button
+          aria-label="button"
           className="Plus-button"
           onClick={() => setChallenge(!challenge)}
         >
