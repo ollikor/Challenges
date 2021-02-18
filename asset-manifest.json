@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Challenges/static/css/main.e0521ddc.chunk.css",
-    "main.js": "/Challenges/static/js/main.0e34fb1f.chunk.js",
-    "main.js.map": "/Challenges/static/js/main.0e34fb1f.chunk.js.map",
+    "main.css": "/Challenges/static/css/main.0c735115.chunk.css",
+    "main.js": "/Challenges/static/js/main.1b2ac380.chunk.js",
+    "main.js.map": "/Challenges/static/js/main.1b2ac380.chunk.js.map",
     "runtime-main.js": "/Challenges/static/js/runtime-main.abbd2a82.js",
     "runtime-main.js.map": "/Challenges/static/js/runtime-main.abbd2a82.js.map",
     "static/js/2.6b1a8162.chunk.js": "/Challenges/static/js/2.6b1a8162.chunk.js",
@@ -12,13 +12,13 @@
     "index.html": "/Challenges/index.html",
     "service-worker.js": "/Challenges/service-worker.js",
     "service-worker.js.map": "/Challenges/service-worker.js.map",
-    "static/css/main.e0521ddc.chunk.css.map": "/Challenges/static/css/main.e0521ddc.chunk.css.map",
+    "static/css/main.0c735115.chunk.css.map": "/Challenges/static/css/main.0c735115.chunk.css.map",
     "static/js/2.6b1a8162.chunk.js.LICENSE.txt": "/Challenges/static/js/2.6b1a8162.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.abbd2a82.js",
     "static/js/2.6b1a8162.chunk.js",
-    "static/css/main.e0521ddc.chunk.css",
-    "static/js/main.0e34fb1f.chunk.js"
+    "static/css/main.0c735115.chunk.css",
+    "static/js/main.1b2ac380.chunk.js"
   ]
 }
