@@ -1,6 +1,11 @@
 :root {
-  --background: #538d4e;
-  --text: #000000;
+  --primary: #406f3c;
+  --delete: #d30000;
+  --headerText: #ffffff;
+  --text: #ffffff;
+  --boxshadow: #000000;
+  --modalcontainer: rgba(71, 71, 71, 0.9);
+  --modalbackgroundcolor: #ffffff;
 }
 
 .App {
@@ -8,39 +13,38 @@
   margin: 0 auto;
   max-width: 960px;
   text-align: center;
-  /* padding-bottom: 60px; */
+}
+
+.App-header {
+  position: relative;
+  z-index: 10;
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--headerText);
+  padding: 20px;
+  box-shadow: 0px 2px 5px var(--boxshadow);
+}
+
+.Header-title {
+  margin: 20px 0 0 10px;
+  font-size: 30px;
 }
 
 .Quote-title {
   font-style: italic;
   font-size: 23px;
   margin: 20px 0 0 0;
-  color: var(--text);
+  color: var(--headerText);
 }
 
 .Quote-name {
   font-style: italic;
-  font-size: 18px;
+  font-size: 20px;
   margin: 10px 0 20px 0;
-  color: var(--text);
-}
-
-.App-header {
-  background-color: var(--background);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--text);
-  padding: 20px;
-}
-
-.Header-title {
-  margin: 20px 0 0 10px;
-}
-
-.App-link {
-  color: #61dafb;
+  color: var(--headerText);
 }
 
 
@@ -50,7 +54,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 5px white;
   padding: 30px;
 }
 
@@ -59,12 +62,16 @@
 }
 
 .Icon {
-  font-size: 30px;
+  font-size: 40px;
+}
+
+.Card-content {
+  font-size: 18px;
 }
 
 .Progress-bar {
   position: relative;
-  margin: 0;
+  margin-top: 10px;
   width: 100%;
   min-width: 150px;
   max-width: 300px;
@@ -83,7 +90,6 @@
   width: 100%;
   max-width: 960px;
   bottom: 0;
-  /* background-color: #ffffff; */
 }
 
 .Plus-button {
@@ -91,45 +97,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px;
+  margin: 20px;
   width: 50px;
   height: 50px;
+  max-width: 50px;
+  max-height: 50px;
   font-size: 30px;
+  padding: 0px;
   border: 0px;
-  border-radius: 40px;
+  border-radius: 25px;
   outline: none;
-  color: #ffffff;
-  background-color: var(--background);
-  box-shadow: 0 2px 5px #000000;
+  color: var(--text);
+  background-color: var(--primary);
+  box-shadow: 0 2px 5px var(--boxshadow);
 }
 
 .Add-challenge {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content:space-evenly;
+  justify-content:space-around;
   align-items: center;
   bottom: 0;
   top: 1;
+  padding: 20px 0;
   width: 100%;
-  height: 120px;
-  background-color: #ffffff;
-  box-shadow: 0px 0px 5px #000000;
+  min-height: 100px;
+  background-color: var(--text);
+  box-shadow: 0px 0px 5px var(--boxshadow);
 }
 
 input {
   width: 100px;
-  padding: 3px;
+  padding: 10px;
+  font-size: 16px;
 }
-
-/* .Save-button {
-  width: 110px;
-  margin: 0px;
-  padding: 5px;
-  border: none;
-  background-color: #0c8d00;
-  color: #ffffff;
-} */
 
 #modal-root {
   position: relative;
@@ -140,7 +142,7 @@ input {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(71, 71, 71, 0.9);
+  background-color: var(--modalcontainer);
   margin: auto;
   top: 0;
   left: 0; 
@@ -153,10 +155,11 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  min-width: 50%;
-  min-height: 30%;
-  background-color: #ffffff;
+  justify-content: space-around;
+  width: 50%;
+  height: 30%;
+  max-width: 300px;
+  background-color: var(--modalbackgroundcolor);
   border-radius: 20px;
   padding: 20px 0;
 }
@@ -171,29 +174,29 @@ input {
   flex-direction: column;
   align-items: center;
   /* margin: 15px; */
-  width: 100px;
+  width: 120px;
   height: 80px;
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px;
   border: 0px;
   border-radius: 5px;
   outline: none;
-  color: #ffffff;
-  background-color: #ff0000;
-  box-shadow: 0 1px 3px #000000;
+  color: var(--text);
+  background-color: var(--delete);
+  box-shadow: 0 1px 3px var(--boxshadow);
 }
 
 .Log-button, .Save-button {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  color: white;
-  background-color: green;
-  width: 100px;
+  justify-content: space-around;
+  color: var(--text);
+  background-color: var(--primary);
+  width: 120px;
   padding: 10px;
   outline: none;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 1px 3px #000000;
-  font-size: 14px;
+  box-shadow: 0 1px 3px var(--boxshadow);
+  font-size: 16px;
 }

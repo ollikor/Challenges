@@ -92,7 +92,7 @@ export function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2 className="Header-title">Challenges</h2>
+        <h1 className="Header-title">Challenges</h1>
         {quote !== null ?
           <div>
             <p className="Quote-title">{quote.quote}</p>
@@ -110,17 +110,19 @@ export function App() {
             title={item.title}
             startDate={item.startDate}
             lastLoggedDate={item.lastLoggedDate}
-            value={item.value}
+            // value={item.value}
+            value={400}
             updated={item.updated}
             update={() => update(item.id)}
+            updateState={(challenges) => setChallenges(challenges)}
           />
         ))
         : null}
       <div className="Add-challenge-container">
         {challenge ? (
           <div className="Add-challenge">
-            <input placeholder="Add challenge" onChange={(e) => setText(e.target.value)} />
-            <button className="Save-button" onClick={() => saveChallege()}>Save</button>
+            <input type="text" placeholder="Add challenge" onChange={(e) => setText(e.target.value)} />
+            <button type="button" className="Save-button" onClick={() => saveChallege()}>Save</button>
           </div>
         ) : null}
         <button

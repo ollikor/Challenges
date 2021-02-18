@@ -4,15 +4,11 @@ import { Modal } from "./Modal";
 import { ModalChild } from './ModalChild';
 import { Crown } from "./Crown";
 
+import { bronze, silver, gold, diamond } from '../data';
+
 export function Card(props) {
 
   const [modal, showModal] = useState(false);
-
-  // Statuses
-  const bronze = { name: 'Bronze', statusMark: '&#x2160', color: '#cd7f32', margin: '10px' }
-  const silver = { name: 'Silver', statusMark: '&#x2160', color: '#C0C0C0', margin: '10px' }
-  const gold = { name: 'Gold', statusMark: '&#x21604', color: '#FFDF00', margin: '10px' }
-  const diamond = { name: 'diamond', statusMark: '&#x2160', color: '#66ccff', margin: '10px' }
 
   // Check if index of card is even and set correct background.
   function background() {
@@ -22,7 +18,7 @@ export function Card(props) {
       };
     } else {
       return {
-        backgroundColor: "#626262",
+        backgroundColor: "#555555",
         color: 'white'
       };
     }
@@ -101,29 +97,23 @@ export function Card(props) {
     }
   }
 
-  function handleUpdate() {
-    // alert('update')
-    if(props.updated === false) {
-      props.update();
-    }
-  }
-
   function handleDelete() {
     const challenges = JSON.parse(localStorage.getItem("challenges"));
     const newChallenges = challenges.filter(obj => obj.id !== props.id);
     localStorage.setItem("challenges", JSON.stringify(newChallenges));
+    props.updateState(newChallenges);
   }
 
   return (
     <div onClick={() => showModal(!modal)} className="Card" style={background()}>
-      <span>Started {props.startDate} - {props.value} days</span>
-      <h3 className="Card-title">{props.title}</h3>
+      <div className="Card-content">Started {props.startDate} - {props.value} days</div>
+      <h2 className="Card-title">{props.title}</h2>
       <Crown status={checkStatus()} value={props.value} />
       { modal ?
         <Modal>
           <ModalChild
             title={props.title}
-            handleUpdate={() => handleUpdate()}
+            handleUpdate={props.updated ? () => props.update():null}
             handleDelete={() => handleDelete()}
           />
         </Modal>
