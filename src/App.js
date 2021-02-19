@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Card } from "./components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import { quotes } from "./data";
+
+import { Card } from "./components/Card";
+
 import "./App.css";
 
-const quotes = [
-  {
-    quote: "The way to get started is to quit talking and begin doing.",
-    name: "Walt Disney"
-  },
-  {
-    quote: "Just do it.",
-    name: "Nike"
-  },
-  {
-    quote: "The pessimist sees difficulty in every opportunity. The optimist sees the opportunity in every difficulty.",
-    name: "Winston Churchill"
-  }
-]
 export function App() {
+  console.log(new Date)
   const [quote, setQuote] = useState(null);
   const [challenge, setChallenge] = useState(null);
   const [text, setText] = useState("");
@@ -27,7 +17,8 @@ export function App() {
 
   useEffect(() => {
     getQuote();
-    const challenges = JSON.parse(localStorage.getItem("challenges"));
+    const challenges = checkDay();
+    console.log(challenges);
     setChallenges(challenges);
   }, []);
 
@@ -40,51 +31,59 @@ export function App() {
     });
   }
 
-  function saveChallege() {
+  function checkDay() {
     const date = new Date();
     const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+    const challenges = JSON.parse(localStorage.getItem("challenges"));
+    // console.log(date);
+    // console.log(dateString);
+    // console.log(challenges);
+    return challenges;
+  }
 
+  function saveChallege() {
     if (text !== "") {
+      // const date = new Date('2021-02-17T10:20:30Z');
+      const date = new Date();
+      const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
       const challenges = JSON.parse(localStorage.getItem("challenges"));
+
+      const challenge = {
+        id: Math.floor(Date.now() * Math.random()),
+        title: text,
+        startDate: dateString,
+        lastLoggedDate: date,
+        value: 0,
+      };
+
       if (challenges !== null) {
-        const challenge = {
-          id: Date.now(),
-          title: text,
-          startDate: dateString,
-          lastLoggedDate: date,
-          value: 0,
-          updated: false
-        };
         localStorage.setItem("challenges", JSON.stringify([...challenges, challenge]));
         setChallenges([
           ...challenges,
           challenge
         ]);
       } else {
-        const challenge = [{
-          id: Date.now(),
-          title: text,
-          startDate: dateString,
-          lastLoggedDate: date,
-          value: 0,
-          updated: false
-        }];
-        localStorage.setItem("challenges", JSON.stringify(challenge));
-        setChallenges(challenge);
+        localStorage.setItem("challenges", JSON.stringify([challenge]));
+        setChallenges([challenge]);
       }
+      setChallenge(false);
     }
-    setChallenge(false);
   }
 
   function update(id) {
-    const date = new Date();
-    const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+    const currentDate = new Date();
     const challenges = JSON.parse(localStorage.getItem("challenges"));
-    const newChallenges = challenges.map(obj =>
-      obj.id === id ?
-        { ...obj, value: obj.value + 1, lastLoggedDate: date, updated: true }
-        : obj
-    );
+    
+    const newChallenges = challenges.map(obj => {
+      let lastLoggedDate = new Date(obj.lastLoggedDate);
+      const newLastLoggedDate = new Date(Date.UTC(lastLoggedDate.getFullYear(),lastLoggedDate.getMonth(),lastLoggedDate.getDate()));
+      const newDate = new Date(Date.UTC(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()));
+         if (obj.id === id && newLastLoggedDate < newDate) {
+          return { ...obj, value: obj.value + 1, lastLoggedDate: new Date() }
+        } else {
+        return obj
+      }
+    });
     localStorage.setItem("challenges", JSON.stringify(newChallenges));
     setChallenges(newChallenges)
   }
@@ -110,9 +109,7 @@ export function App() {
             title={item.title}
             startDate={item.startDate}
             lastLoggedDate={item.lastLoggedDate}
-            // value={item.value}
-            value={400}
-            updated={item.updated}
+            value={item.value}
             update={() => update(item.id)}
             updateState={(challenges) => setChallenges(challenges)}
           />
@@ -120,10 +117,16 @@ export function App() {
         : null}
       <div className="Add-challenge-container">
         {challenge ? (
-          <div className="Add-challenge">
-            <input type="text" placeholder="Add challenge" onChange={(e) => setText(e.target.value)} />
-            <button type="button" className="Save-button" onClick={() => saveChallege()}>Save</button>
-          </div>
+          <form className="Add-challenge" onSubmit={() => saveChallege()}>
+            <input
+              className="Challenge-input"
+              type="text"
+              placeholder="Add challenge"
+              onChange={(e) => setText(e.target.value)}
+              required
+            />
+            <input type="submit" className="Save-button" value="Save" />
+          </form>
         ) : null}
         <button
           aria-label="button"

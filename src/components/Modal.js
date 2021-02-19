@@ -13,5 +13,4 @@ export function Modal(props) {
     });
 
     return ReactDOM.createPortal(props.children, el);
-    // return <h1>{props.child}</h1>
 }

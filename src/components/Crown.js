@@ -3,6 +3,7 @@ import { faCrown, faGem } from "@fortawesome/free-solid-svg-icons";
 
 export function Crown(props) {
     const status = props.status;
+    let statusArea = status.statusArea;
     const percent = percentage();
     // Calculate past percentage of days in the correct statusarea
     function percentage() {
@@ -40,7 +41,7 @@ export function Crown(props) {
                 position: 'absolute',
                 zIndex: 10,
                 left: 0,
-                backgroundColor: '#406f3c',
+                backgroundColor: '#0e8404',
                 width: `${percent}%`,
                 maxWidth: '100%',
                 height: '10px',
@@ -67,7 +68,7 @@ export function Crown(props) {
             {setIcons().map((item, index) => (
                 <span key={index}>{item}</span>
             ))}
-            <div className="Card-content">{`${status.status.name} - ${String.fromCharCode(status.status.statusMark)}`}</div>
+            <div className="Card-content">{`${status.status.name} - ${String.fromCharCode(status.status.statusMark[statusArea])}`}</div>
             <div className="Progress-bar">
                 <span style={progressBar(percent)}></span>
             </div>

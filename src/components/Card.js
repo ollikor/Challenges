@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
+import { bronze, silver, gold, diamond } from '../data';
+
 import { Modal } from "./Modal";
 import { ModalChild } from './ModalChild';
 import { Crown } from "./Crown";
-
-import { bronze, silver, gold, diamond } from '../data';
 
 export function Card(props) {
 
@@ -19,7 +19,7 @@ export function Card(props) {
     } else {
       return {
         backgroundColor: "#555555",
-        color: 'white'
+        color: '#ffffff'
       };
     }
   }
@@ -113,7 +113,7 @@ export function Card(props) {
         <Modal>
           <ModalChild
             title={props.title}
-            handleUpdate={props.updated ? () => props.update():null}
+            handleUpdate={() =>props.update()}
             handleDelete={() => handleDelete()}
           />
         </Modal>

@@ -3,9 +3,10 @@
   --delete: #d30000;
   --headerText: #ffffff;
   --text: #ffffff;
-  --boxshadow: #000000;
   --modalcontainer: rgba(71, 71, 71, 0.9);
   --modalbackgroundcolor: #ffffff;
+  --boxshadow: #000000;
+  --progressbar: #a3a3a3;
 }
 
 .App {
@@ -71,12 +72,10 @@
 
 .Progress-bar {
   position: relative;
-  margin-top: 10px;
-  width: 100%;
-  min-width: 150px;
-  max-width: 300px;
+  margin: 10px auto;
+  width: 150px;
   height: 10px;
-  background-color: rgb(150, 150, 150);
+  background-color: var(--progressbar);
   border-radius: 0px;
 }
 
@@ -119,7 +118,6 @@
   justify-content:space-around;
   align-items: center;
   bottom: 0;
-  top: 1;
   padding: 20px 0;
   width: 100%;
   min-height: 100px;
@@ -127,9 +125,9 @@
   box-shadow: 0px 0px 5px var(--boxshadow);
 }
 
-input {
+.Challenge-input {
   width: 100px;
-  padding: 10px;
+  padding: 8px;
   font-size: 16px;
 }
 
@@ -159,6 +157,7 @@ input {
   width: 50%;
   height: 30%;
   max-width: 300px;
+  max-height: 250px;
   background-color: var(--modalbackgroundcolor);
   border-radius: 20px;
   padding: 20px 0;
@@ -170,7 +169,7 @@ input {
 
 .Delete-button {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   /* margin: 15px; */
