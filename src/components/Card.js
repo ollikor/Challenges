@@ -109,6 +109,7 @@ export function Card(props) {
       <div className="Card-content">Started {props.startDateString} - {props.value} days</div>
       <h2 className="Card-title">{props.title}</h2>
       <Crown status={checkStatus()} value={props.value} />
+      {console.log(modal)}
       { modal ?
         <Modal>
           <ModalChild

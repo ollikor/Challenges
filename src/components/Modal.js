@@ -10,7 +10,7 @@ export function Modal(props) {
         return () => {
             modalRoot.removeChild(el);
         };
-    });
+    },[]);
 
     return ReactDOM.createPortal(props.children, el);
 }

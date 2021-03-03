@@ -4,7 +4,7 @@ import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
 export function ModalChild(props) {
     return (
         <div className="Modal-container">
-            <div className="Modal-content">
+            <div onClick={(e) => e.stopPropagation()} className="Modal-content">
                 <div className="Modal-title">{props.title}</div>
                 <button className="Log-button" onClick={() => props.handleUpdate()}>
                     <div>Log</div> 
