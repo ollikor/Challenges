@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "challenges",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authchallenges87e931cf",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

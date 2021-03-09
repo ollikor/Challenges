@@ -52,12 +52,16 @@
 
 
 .Card {
+  margin: 0px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: 30px;
+  border: none;
+  outline-style: none;
 }
 
 .Card-title {
@@ -185,30 +189,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  /* width: 50%; */
+  justify-content:space-around;
+  width: 50%;
   /* height: 500px; */
   max-width: 300px;
+  min-height: 250px;
   /* max-height: 400px; */
   background-color: var(--modalbackgroundcolor);
   border-radius: 20px;
   padding: 20px;
 }
 
-.SignUpIn-content {
-  /* position: relative;
-  z-index: 1000; */
+a {
+  width: 150px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.SignIn-content, .Confirm-content, .SignUp-content {
+  height: 300px;
+  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  /* width: 50%; */
-  /* height: 500px; */
-  /* max-width: 300px; */
-  /* max-height: 400px; */
-  /* background-color: var(--modalbackgroundcolor);
-  border-radius: 20px; */
-  /* padding: 20px; */
+  justify-content: center;
+}
+
+.Modal-error {
+  margin: 5px;
+  color: var(--delete);
 }
 
 .Modal-title {
@@ -264,12 +273,6 @@
   border-radius: 5px;
   box-shadow: 0 1px 3px var(--boxshadow);
   font-size: 16px;
-}
-
-a {
-  width: 150px;
-  margin-top: 20px;
-  text-align: center;
 }
 
 .SignInOut {

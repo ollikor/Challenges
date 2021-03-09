@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import { API, graphqlOperation } from "aws-amplify";
+import * as mutations from '../graphql/mutations';
+
 import { bronze, silver, gold, diamond } from '../data';
 
 import { Modal } from "./Modal";
@@ -97,28 +100,64 @@ export function Card(props) {
     }
   }
 
-  function handleDelete() {
-    const challenges = JSON.parse(localStorage.getItem("challenges"));
-    const newChallenges = challenges.filter(obj => obj.id !== props.id);
-    localStorage.setItem("challenges", JSON.stringify(newChallenges));
-    props.updateState(newChallenges);
+  async function handleDelete(id) {
+    try {
+      const challenge = {
+        id: id
+      }
+      await API.graphql(graphqlOperation(mutations.deleteChallenge, { input: challenge }));
+      props.refresh();
+      // const challenges = JSON.parse(localStorage.getItem("challenges"));
+      // const newChallenges = challenges.filter(obj => obj.id !== props.id);
+      // localStorage.setItem("challenges", JSON.stringify(newChallenges));
+      // props.updateState(newChallenges);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function handleUpdate(id, value, lastLoggedDate, startDate) {
+    try {
+      let days;
+      const currentDate = new Date();
+      if(value === 0) {
+        days = Math.floor((new Date(currentDate) - new Date(startDate)) / (24 * 60 * 60 * 1000));
+      }else {
+        days = Math.floor((new Date(currentDate) - new Date(lastLoggedDate)) / (24 * 60 * 60 * 1000));
+      }
+      const challenge = {
+        id: id,
+        days: days
+      }
+      if(days > 0) {
+        await API.graphql(graphqlOperation(mutations.updateChallenge, { input: challenge }));
+        props.refresh();
+      }else{
+        return "Can't log today";
+      }
+      // const challenges = JSON.parse(localStorage.getItem("challenges"));
+      // const newChallenges = challenges.filter(obj => obj.id !== props.id);
+      // localStorage.setItem("challenges", JSON.stringify(newChallenges));
+      // props.updateState(newChallenges);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
-    <div onClick={() => showModal(!modal)} className="Card" style={background()}>
+    <button onClick={() => showModal(!modal)} className="Card" style={background()}>
       <div className="Card-content">Started {props.startDateString} - {props.value} days</div>
       <h2 className="Card-title">{props.title}</h2>
       <Crown status={checkStatus()} value={props.value} />
-      {console.log(modal)}
       { modal ?
         <Modal>
           <ModalChild
             title={props.title}
-            handleUpdate={() =>props.update()}
-            handleDelete={() => handleDelete()}
+            handleUpdate={() => handleUpdate(props.id, props.value, props.lastLoggedDate, props.startDate)}
+            handleDelete={() => handleDelete(props.id)}
           />
         </Modal>
         : null}
-    </div>
+    </button>
   );
 };

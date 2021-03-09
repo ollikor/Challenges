@@ -5,7 +5,7 @@ export function Challenge(props) {
     const [date, showDate] = useState(false);
 
     return (
-        <form className="Add-challenge" onSubmit={() => props.saveChallege()}>
+        <form className="Add-challenge">
             <h2 className="Challenge-title">Challenge</h2>
             <div className="Setdate-container">
                 <label htmlFor="check">Set start date: </label>
@@ -28,7 +28,7 @@ export function Challenge(props) {
                 onChange={(e) => props.setTitle(e.target.value)}
                 required
             />
-            <button onClick={() => props.saveChallege()} type="button" className="Save-button" value="Save">Save</button>
+            <button onClick={() => props.saveChallenge()} type="button" className="Save-button" value="Save">Save</button>
         </form>
     );
 }
