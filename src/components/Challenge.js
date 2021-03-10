@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 export function Challenge(props) {
 
+    const { setStartDate, setTitle, saveChallenge } = props;
+
     const [date, showDate] = useState(false);
 
     return (
@@ -17,7 +19,7 @@ export function Challenge(props) {
                     id="startDate"
                     className="Challenge-input"
                     type="date"
-                    onChange={(e) => props.setStartDate(e.target.value)}
+                    onChange={(e) => setStartDate(e.target.value)}
                     required
                 />
             </div> : null}
@@ -25,10 +27,13 @@ export function Challenge(props) {
                 className="Challenge-input"
                 type="text"
                 placeholder="Title"
-                onChange={(e) => props.setTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 required
             />
-            <button onClick={() => props.saveChallenge()} type="button" className="Save-button" value="Save">Save</button>
+            <button onClick={() => saveChallenge()}
+                type="button"
+                className="Save-button"
+                value="Save">Save</button>
         </form>
     );
 }

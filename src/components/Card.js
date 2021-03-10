@@ -11,6 +11,8 @@ import { Crown } from "./Crown";
 
 export function Card(props) {
 
+const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } = props;
+
   const [modal, showModal] = useState(false);
 
   // Check if index of card is even and set correct background.
@@ -102,15 +104,9 @@ export function Card(props) {
 
   async function handleDelete(id) {
     try {
-      const challenge = {
-        id: id
-      }
+      const challenge = { id: id }
       await API.graphql(graphqlOperation(mutations.deleteChallenge, { input: challenge }));
-      props.refresh();
-      // const challenges = JSON.parse(localStorage.getItem("challenges"));
-      // const newChallenges = challenges.filter(obj => obj.id !== props.id);
-      // localStorage.setItem("challenges", JSON.stringify(newChallenges));
-      // props.updateState(newChallenges);
+      refresh();
     } catch (error) {
       console.log(error)
     }
@@ -120,25 +116,18 @@ export function Card(props) {
     try {
       let days;
       const currentDate = new Date();
-      if(value === 0) {
+      if (value === 0) {
         days = Math.floor((new Date(currentDate) - new Date(startDate)) / (24 * 60 * 60 * 1000));
-      }else {
+      } else {
         days = Math.floor((new Date(currentDate) - new Date(lastLoggedDate)) / (24 * 60 * 60 * 1000));
       }
-      const challenge = {
-        id: id,
-        days: days
-      }
-      if(days > 0) {
+      const challenge = { id: id, days: days }
+      if (days > 0) {
         await API.graphql(graphqlOperation(mutations.updateChallenge, { input: challenge }));
-        props.refresh();
-      }else{
+        refresh();
+      } else {
         return "Can't log today";
       }
-      // const challenges = JSON.parse(localStorage.getItem("challenges"));
-      // const newChallenges = challenges.filter(obj => obj.id !== props.id);
-      // localStorage.setItem("challenges", JSON.stringify(newChallenges));
-      // props.updateState(newChallenges);
     } catch (error) {
       console.log(error)
     }
@@ -146,15 +135,20 @@ export function Card(props) {
 
   return (
     <button onClick={() => showModal(!modal)} className="Card" style={background()}>
-      <div className="Card-content">Started {props.startDateString} - {props.value} days</div>
-      <h2 className="Card-title">{props.title}</h2>
-      <Crown status={checkStatus()} value={props.value} />
+      <div className="Card-content">Started {startDateString} - {value} days</div>
+      <h2 className="Card-title">{title}</h2>
+      <Crown status={checkStatus()} value={value} />
       { modal ?
         <Modal>
           <ModalChild
-            title={props.title}
-            handleUpdate={() => handleUpdate(props.id, props.value, props.lastLoggedDate, props.startDate)}
-            handleDelete={() => handleDelete(props.id)}
+            title={title}
+            handleUpdate={() => handleUpdate(
+              id,
+              value,
+              lastLoggedDate,
+              startDate
+            )}
+            handleDelete={() => handleDelete(id)}
           />
         </Modal>
         : null}

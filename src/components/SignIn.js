@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
+
 export function SignIn(props) {
+
+    const { isAuthenticated, setToastText, showToast, user } = props;
 
     let history = useHistory();
 
@@ -10,20 +13,17 @@ export function SignIn(props) {
     async function signIn() {
         const username = document.getElementById("username").value;
         const pwd = document.getElementById("pwd").value;
+        
         try {
             await Auth.signIn(username, pwd);
-            props.isAuthenticated(true);
-            props.setToastText('Signed in');
-            props.showToast(true);
-            history.push(`/user/${username}`);
+            isAuthenticated(true);
+            user(username);
+            setToastText('Signed in');
+            showToast(true);
+            history.push(`/user`);
         } catch (error) {
             setsignUpInError('Invalid username or password');
         }
-        // const error = await props.signIn(username, pwd);
-        // console.log(error)
-        // if (error !== undefined) {
-        //     setsignUpInError(error);
-        // }
     }
 
     return (
@@ -42,11 +42,10 @@ export function SignIn(props) {
                 id="pwd"
                 placeholder="Password"
             />
-            <button className="Save-button" onClick={() => signIn()}>
+            <button type="button" className="Save-button" onClick={() => signIn()}>
                 Sign in
             </button>
             <Link to="/signup">Create account</Link>
-            {/* <Link to="/confirm">Confirm account</Link> */}
         </div>
     );
 }

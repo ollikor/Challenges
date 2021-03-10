@@ -2,7 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown, faGem } from "@fortawesome/free-solid-svg-icons";
 
 export function Crown(props) {
-    const status = props.status;
+
+    const { status, value } = props;
+
     let statusArea = status.statusArea;
     const percent = percentage();
     // Calculate past percentage of days in the correct statusarea
@@ -16,10 +18,10 @@ export function Crown(props) {
         // example value is 100 days, min is 80 and max 120 in the current statusarea. 
         // Without reduction value is more than days between min and max so percentage is over 100%.
         if (status.max !== null) {
-            if (props.value > status.min) {
-                fixedDays = props.value - status.min;
+            if (value > status.min) {
+                fixedDays = value - status.min;
             } else {
-                fixedDays = props.value;
+                fixedDays = value;
             }
 
             // Calculate days amount between min and max
@@ -68,7 +70,10 @@ export function Crown(props) {
             {setIcons().map((item, index) => (
                 <span key={index}>{item}</span>
             ))}
-            <div className="Card-content">{`${status.status.name} - ${String.fromCharCode(status.status.statusMark[statusArea])}`}</div>
+            <div className="Card-content">
+                {`${status.status.name} - 
+                ${String.fromCharCode(status.status.statusMark[statusArea])}`}
+            </div>
             <div className="Progress-bar">
                 <span style={progressBar(percent)}></span>
             </div>

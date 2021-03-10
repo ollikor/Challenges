@@ -4,6 +4,8 @@ import { Auth } from "aws-amplify";
 
 export function Confirm(props) {
 
+    const { setToastText, showToast } = props;
+
     let history = useHistory();
 
     const [confirmError, setConfirmError] = useState(false);
@@ -14,11 +16,11 @@ export function Confirm(props) {
         const code = document.getElementById("code").value;
         try {
             await Auth.confirmSignUp(username, code);
-            props.setToastText('Confirmed');
-            props.showToast(true);
+            setToastText('Confirmed');
+            showToast(true);
             history.push('/signin');
         } catch (error) {
-            setConfirmError(error.split(':').pop());
+            setConfirmError(error.message.split(':').pop());
         }
     }
 

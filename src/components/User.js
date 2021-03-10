@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API, graphqlOperation } from 'aws-amplify';
-// import API from "@aws-amplify/api"
 import * as queries from '../graphql/queries';
 import * as mutations from '../graphql/mutations';
 
@@ -10,7 +9,7 @@ import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Challenge } from './Challenge';
 import { Card } from './Card';
 
-export function User(props) {
+export function User() {
 
     const [challenges, setChallenges] = useState(null);
     const [challenge, showChallenge] = useState(false);
@@ -61,24 +60,28 @@ export function User(props) {
 
     return (
         <div>
-            {challenges !== null && challenges.data.listChallenges.items.length > 0 ? challenges.data.listChallenges.items.map((item, index) => (
-                <Card
-                    key={index}
-                    index={index}
-                    id={item.id}
-                    title={item.title}
-                    startDate={item.startDate}
-                    startDateString={item.startDateString}
-                    lastLoggedDate={item.updatedAt}
-                    value={item.days}
-                    refresh={() => getData()}
-                />
-            ))
-                :
-                <div>
-                    <h3>No challenges</h3>
-                    <p>Press Plus-button on the bottom of the screen to create ne challenge</p>
-                </div>}
+            <div className="User-container">
+                {challenges !== null
+                    && challenges.data.listChallenges.items.length > 0
+                    ? challenges.data.listChallenges.items.map((item, index) => (
+                        <Card
+                            key={index}
+                            index={index}
+                            id={item.id}
+                            title={item.title}
+                            startDate={item.startDate}
+                            startDateString={item.startDateString}
+                            lastLoggedDate={item.updatedAt}
+                            value={item.days}
+                            refresh={() => getData()}
+                        />
+                    ))
+                    :
+                    <div>
+                        <h3>No challenges</h3>
+                        <p>Press Plus-button on the bottom of the screen to create new challenge</p>
+                    </div>}
+            </div>
             <div className="Add-challenge-container">
                 {challenge ? (
                     <Challenge
@@ -88,16 +91,14 @@ export function User(props) {
                     />
                 ) : null}
                 <button
-                    aria-label="button"
+                    type="button"
                     className="Plus-button"
-                    // onClick={() => saveChallenges()}
                     onClick={() => showChallenge(!challenge)}
                 >
-                    {
-                        challenge === true ?
-                            <FontAwesomeIcon icon={faTimes} />
-                            :
-                            <FontAwesomeIcon icon={faPlus} />
+                    {challenge === true ?
+                        <FontAwesomeIcon icon={faTimes} />
+                        :
+                        <FontAwesomeIcon icon={faPlus} />
                     }
                 </button>
             </div>

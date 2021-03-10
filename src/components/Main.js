@@ -1,5 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
-export function Main(props) {
+export function Main() {
     return (
         <div>
             <h1 className="Main-title">Main</h1>
