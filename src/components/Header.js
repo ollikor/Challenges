@@ -27,9 +27,10 @@ export function Header(props) {
                 </div>
                 :
                 <button
+                    aria-label="signIn"
                     type="button"
                     onClick={() => history.push('/signin')}
-                    className="SignIn">
+                    className="SignIn-button">
                     <FontAwesomeIcon icon={faSignInAlt} />
                 </button>
             }

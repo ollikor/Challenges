@@ -15,7 +15,7 @@ export function Nav(props) {
 
     return (
         <div id="Sidenav-content">
-            <button className="Close-navbar" onClick={() => closeNav()}>
+            <button aria-label="closeNavbar" className="Close-navbar" onClick={() => closeNav()}>
                 <FontAwesomeIcon icon={faTimes} ></FontAwesomeIcon>
             </button>
             <Link className="Navlink" to="/">Home</Link>
