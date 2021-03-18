@@ -52,36 +52,30 @@
   color: var(--primary);
 }
 
-#Sidenav {
+#Sidenav-content {
   position: absolute;
   z-index: 1000;
   top: 0;
   left: 0;
-  width: 0;
-  height: 100vh;
-  /* transition: 1.5s; */
-  /* background-color: red; */
-}
-
-#Sidenav-content {
-  width: 50%;
-  max-width: 200px;
+  width: 0px;
   height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   background-color: var(--navbarBackroundColor);
   box-shadow: -5px 0px 5px var(--boxshadow);
+  transition: 1s;
 }
 
 .Close-navbar {
-  width: 90%;
+  margin: 15px;
   text-align: right;
   height: 35px;
   border: none;
-  border-radius: 17.5px;
   outline: none;
   font-size: 25px;
+  background-color: var(--navbarBackroundColor);
   color: var(--navbarText);
 }
 
@@ -373,10 +367,11 @@ a {
 
 #Toast {
   z-index: 100;
-  visibility: hidden;
+  visibility: visible;
   position: absolute;
   min-width: 100px;
-  top: 20px;
+  top: 0px;
+  opacity: 0;
   padding: 3px 5px;
   border-radius: 20px;
   color: var(--toastTextColor);
@@ -388,49 +383,56 @@ a {
 
 #Toast.show {
   visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  -webkit-animation: fadein 3s;
+  animation: fadein 3s;
+}
+
+.Loader {
+  margin: 10px auto;
+  border: 5px solid var(--primary);
+  border-radius: 50%;
+  border-top: 5px solid var(--toastbackgroundcolor);
+  border-bottom: 5px solid var(--toastbackgroundcolor);
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @-webkit-keyframes fadein {
-  from {
+  0% {
     top: 0;
     opacity: 0;
   }
-  to {
+  25%, 50%, 75% {
     top: 20px;
     opacity: 1;
+  }
+  100% {
+    top: 0;
+    opacity: 0;
   }
 }
 
 @keyframes fadein {
-  from {
+  0% {
     top: 0;
     opacity: 0;
   }
-  to {
+  25%, 50%, 75% {
     top: 20px;
     opacity: 1;
   }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    top: 20px;
-    opacity: 1;
-  }
-  to {
-    top: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    top: 20px;
-    opacity: 1;
-  }
-  to {
+  100% {
     top: 0;
     opacity: 0;
   }

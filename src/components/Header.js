@@ -10,7 +10,7 @@ export function Header(props) {
     let history = useHistory();
 
     function openNav() {
-        document.getElementById("Sidenav").style.width = "100%";
+        document.getElementById("Sidenav-content").style.width = "200px";
         document.body.style.overflow = "hidden";
     }
 

@@ -48,11 +48,12 @@ export function App() {
 
   function getQuote() {
     const random = Math.floor(Math.random() * quotes.length);
-    quotes.map((item, index) => {
-      if (index === random) {
-        setQuote(item);
+    for (let i = 0; i < quotes.length; i++) {
+      if(i === random) {
+        const element = quotes[i];
+        setQuote(element);
       }
-    });
+    }
   }
 
   return (
@@ -65,7 +66,7 @@ export function App() {
             setToastText={(value) => setToastText(value)}
             showToast={(value) => showToast(value)}
           />
-          : null}
+        : null}
         <Header
           user={user}
           isAuthenticated={isAuthenticated}

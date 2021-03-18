@@ -8,6 +8,7 @@ import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { Challenge } from './Challenge';
 import { Card } from './Card';
+import { Loader } from './Loader';
 
 export function User() {
 
@@ -15,14 +16,17 @@ export function User() {
     const [challenge, showChallenge] = useState(false);
     const [title, setTitle] = useState("");
     const [startDate, setStartDate] = useState(null);
+    const [loader, showLoader] = useState(false);
 
     useEffect(() => {
         getData();
     }, []);
 
     async function getData() {
+        showLoader(true);
         const challenges = await API.graphql({ query: queries.listChallenges });
         setChallenges(challenges);
+        showLoader(false);
     }
 
     async function saveChallenge() {
@@ -61,7 +65,10 @@ export function User() {
     return (
         <div>
             <div className="User-container">
-                {challenges !== null
+                
+                {loader ? 
+                <Loader /> :
+                challenges !== null
                     && challenges.data.listChallenges.items.length > 0
                     ? challenges.data.listChallenges.items.map((item, index) => (
                         <Card
@@ -79,7 +86,7 @@ export function User() {
                     :
                     <div>
                         <h3>No challenges</h3>
-                        <p>Press Plus-button on the bottom of the screen to create new challenge</p>
+                        <p>Press Plus-button on the bottom of the screen to create a new challenge</p>
                     </div>}
             </div>
             <div className="Add-challenge-container">

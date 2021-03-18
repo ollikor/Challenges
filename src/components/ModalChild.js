@@ -8,7 +8,16 @@ export function ModalChild(props) {
 
     async function handleUpdate() {
         const error = await props.handleUpdate();
-        setError(error);
+        if(error !== undefined) {
+            setError(error)
+        }
+    }
+
+    async function handleDelete() {
+        const error = await props.handleDelete();
+        if(error !== undefined) {
+            setError(error);
+        }
     }
 
     return (
@@ -20,7 +29,7 @@ export function ModalChild(props) {
                     <div>Log</div> 
                     <FontAwesomeIcon icon={faCheck} />
                 </button>
-                <button className="Delete-button" onClick={() => props.handleDelete()}>
+                <button className="Delete-button" onClick={() => handleDelete()}>
                     <div>Delete challenge</div>
                     <FontAwesomeIcon icon={faTrash} />
                 </button>

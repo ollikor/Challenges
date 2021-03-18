@@ -108,7 +108,7 @@ const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } 
       await API.graphql(graphqlOperation(mutations.deleteChallenge, { input: challenge }));
       refresh();
     } catch (error) {
-      console.log(error)
+      return error.message
     }
   }
 
@@ -129,7 +129,7 @@ const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } 
         return "Can't log today";
       }
     } catch (error) {
-      console.log(error)
+      return error.message
     }
   }
 

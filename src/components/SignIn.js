@@ -1,16 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
+import { Loader } from './Loader';
+
 export function SignIn(props) {
 
+    useEffect(() => showLoader(false),[]);
+
     const { isAuthenticated, setToastText, showToast, user } = props;
-
+    
     let history = useHistory();
-
+    
     const [signUpInError, setsignUpInError] = useState(false);
+    const [loader, showLoader] = useState(false);
 
     async function signIn() {
+        showLoader(true);
+        
         const username = document.getElementById("username").value;
         const pwd = document.getElementById("pwd").value;
         
@@ -43,7 +50,7 @@ export function SignIn(props) {
                 placeholder="Password"
             />
             <button type="button" className="Save-button" onClick={() => signIn()}>
-                Sign in
+                {loader ? <Loader /> :'Sign in'}
             </button>
             <Link to="/signup">Create account</Link>
         </div>

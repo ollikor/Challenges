@@ -32,7 +32,8 @@ export function Crown(props) {
             // Calculate past percentage of days
             return percentage = fixedDays / days * 100;
         } else {
-            return percentage = 100;
+            percentage = 100;
+            return percentage;
         }
     }
 
@@ -41,7 +42,7 @@ export function Crown(props) {
         return (
             {
                 position: 'absolute',
-                zIndex: 10,
+                zIndex: 1,
                 left: 0,
                 backgroundColor: '#0e8404',
                 width: `${percent}%`,
