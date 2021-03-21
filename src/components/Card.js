@@ -106,7 +106,7 @@ export function Card(props) {
 
   return (
     <div onClick={() => showModal(!modal)} className="Card" style={background()}>
-      <div className="Card-content">Started {props.startDate} - {props.value} days</div>
+      <div className="Card-content">Started {props.startDateString} - {props.value} days</div>
       <h2 className="Card-title">{props.title}</h2>
       <Crown status={checkStatus()} value={props.value} />
       { modal ?

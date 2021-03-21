@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes, faYenSign } from "@fortawesome/free-solid-svg-icons";
 
 import { quotes } from "./data";
 
@@ -18,8 +18,7 @@ export function App() {
 
   useEffect(() => {
     getQuote();
-    const challenges = checkDay();
-    console.log(challenges);
+    const challenges = JSON.parse(localStorage.getItem("challenges"));
     setChallenges(challenges);
   }, []);
 
@@ -32,26 +31,15 @@ export function App() {
     });
   }
 
-  function checkDay() {
-    const date = new Date();
-    const dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-    const challenges = JSON.parse(localStorage.getItem("challenges"));
-    // console.log(date);
-    // console.log(dateString);
-    // console.log(challenges);
-    return challenges;
-  }
-
   function saveChallege() {
     if (title !== "") {
       let dateString;
-      // const date = new Date('2021-02-17T10:20:30Z');
       const date = new Date();
       {
-        if(startDate !== null) {
+        if (startDate !== null) {
           const newStartDate = new Date(startDate);
           dateString = `${newStartDate.getDate()}.${newStartDate.getMonth()}.${newStartDate.getFullYear()}`
-        }else {
+        } else {
           dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
         }
       }
@@ -60,8 +48,9 @@ export function App() {
       const challenge = {
         id: Math.floor(Date.now() * Math.random()),
         title: title,
-        startDate: dateString,
-        lastLoggedDate: date,
+        startDateString: dateString,
+        startDate: date.toDateString(),
+        lastLoggedDate: date.toDateString(),
         value: 0,
       };
 
@@ -82,15 +71,17 @@ export function App() {
   }
 
   function update(id) {
-    const currentDate = new Date();
+    const currentDate = new Date().toDateString();
     const challenges = JSON.parse(localStorage.getItem("challenges"));
 
     const newChallenges = challenges.map(obj => {
+
       let lastLoggedDate = new Date(obj.lastLoggedDate);
-      const newLastLoggedDate = new Date(Date.UTC(lastLoggedDate.getFullYear(), lastLoggedDate.getMonth(), lastLoggedDate.getDate()));
-      const newDate = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
-      if (obj.id === id && newLastLoggedDate < newDate) {
-        return { ...obj, value: obj.value + 1, lastLoggedDate: new Date() }
+
+      const days = (new Date(currentDate) - lastLoggedDate) / (24 * 60 * 60 * 1000);
+
+      if (obj.id === id && days > 0) {
+        return { ...obj, value: obj.value + days, lastLoggedDate: new Date().toDateString() }
       } else {
         return obj
       }
@@ -118,7 +109,7 @@ export function App() {
             index={index}
             id={item.id}
             title={item.title}
-            startDate={item.startDate}
+            startDateString={item.startDateString}
             lastLoggedDate={item.lastLoggedDate}
             value={item.value}
             update={() => update(item.id)}
