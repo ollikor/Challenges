@@ -30,11 +30,12 @@ export function SignIn(props) {
             history.push(`/user`);
         } catch (error) {
             setsignUpInError('Invalid username or password');
+            showLoader(false);
         }
     }
 
     return (
-        <div className="SignIn-content">
+        <div className="SignIn-container">
             <div className="Modal-title">Sign In</div>
             {signUpInError ? <p className="LogInError">{signUpInError}</p> : null}
             <input onFocus={(e) => e.target.select()}
@@ -53,6 +54,7 @@ export function SignIn(props) {
                 {loader ? <Loader /> :'Sign in'}
             </button>
             <Link to="/signup">Create account</Link>
+            <Link to="/forgotpassword">forgot password?</Link>
         </div>
     );
 }

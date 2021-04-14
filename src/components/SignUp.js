@@ -32,7 +32,7 @@ export function SignUp() {
     }
 
     return (
-        <div className="SignUp-content">
+        <div className="SignUp-container">
             <div className="Modal-title">Sign up</div>
             {signUpInError ? <p className="LogInError">{signUpInError}</p> : null}
             <input

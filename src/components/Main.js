@@ -1,6 +1,6 @@
 export function Main() {
     return (
-        <div>
+        <div className="Main-container">
             <h1 className="Main-title">Main</h1>
             <p className="Main-content">
                 Welcome to use Challenges Web-application.

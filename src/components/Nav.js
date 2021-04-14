@@ -18,6 +18,7 @@ export function Nav(props) {
             <button aria-label="closeNavbar" className="Close-navbar" onClick={() => closeNav()}>
                 <FontAwesomeIcon icon={faTimes} ></FontAwesomeIcon>
             </button>
+            <p>{props.user ? props.user[0].toUpperCase() + props.user.substring(1) : null}</p>
             <Link className="Navlink" to="/">Home</Link>
             <Link className="Navlink" to="/user">Challenges</Link>
             <Link className="Navlink" to={`/settings/${props.user}`}>Forgot password</Link>

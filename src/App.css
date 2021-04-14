@@ -1,3 +1,6 @@
+
+/* Theme */
+
 :root {
   --primary: #406f3c;
   --delete: #d30000;
@@ -14,6 +17,8 @@
   --navbarText: #ffffff;
 }
 
+
+/* App */
 .App {
   position: relative;
   max-width: 960px;
@@ -21,6 +26,9 @@
   text-align: center;
 }
 
+
+
+/* Header */
 .App-header {
   position: relative;
   z-index: 10;
@@ -44,12 +52,14 @@
   height: 35px;
   top: 0;
   right: 0;
-  margin: 15px 15px;
+  margin: 15px;
   border: none;
-  border-radius: 17.5px;
+  border-radius: 50%;
   outline: none;
   font-size: 18px;
   color: var(--primary);
+  background-color: var(--modalbackgroundcolor);
+  box-shadow: 0 1px 3px var(--modalbackgroundcolor);
 }
 
 #Sidenav-content {
@@ -99,6 +109,8 @@
 .Header-title {
   margin: 0 20px 0 10px;
   font-size: 30px;
+  text-decoration: none;
+  color: var(--text);
 }
 
 .Quote-title {
@@ -115,6 +127,10 @@
   color: var(--text);
 }
 
+
+
+
+/* Challenges page */
 .Card {
   float: left;
   position: relative;
@@ -159,7 +175,6 @@
   align-items: flex-end;
   width: 100%;
   max-width: 960px;
-  /* margin-top: 50px; */
   bottom: 0;
 }
 
@@ -224,7 +239,7 @@
 .Challenge-input,
 .SignInInput {
   width: 150px;
-  margin: 5px;
+  margin: 10px;
   padding: 8px;
   font-size: 16px;
 }
@@ -234,6 +249,10 @@
   z-index: 999;
 }
 
+
+
+
+/* Modal */
 .Modal-container {
   position: fixed;
   display: flex;
@@ -268,14 +287,27 @@ a {
   text-align: center;
 }
 
-.SignIn-content,
-.Confirm-content,
-.SignUp-content {
+.Main-container,
+.User-container {
+  margin: 50px 0;
+}
+
+.Confirm-container,
+.SignIn-container,
+.SignUp-container {
+  margin: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 300px;
+}
+
+.SignIn-content,
+.Confirm-content,
+.SignUp-content {
+  /* margin: 50px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Modal-error {
@@ -339,6 +371,10 @@ a {
   box-shadow: 0 1px 3px var(--boxshadow);
 }
 
+
+
+
+/* Signin signout */
 .SignIn-button {
   position: absolute;
   display: flex;
@@ -350,9 +386,9 @@ a {
   top: 0;
   right: 0;
   margin: 15px;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
-  border-radius: 17.5px;
+  border-radius: 50%;
   outline: none;
   color: var(--primary);
   background-color: var(--modalbackgroundcolor);
@@ -365,6 +401,10 @@ a {
   color: var(--delete);
 }
 
+
+
+
+/* Toast */
 #Toast {
   z-index: 100;
   visibility: visible;
@@ -387,6 +427,10 @@ a {
   animation: fadein 3s;
 }
 
+
+
+
+/* Loader */
 .Loader {
   margin: 10px auto;
   border: 5px solid var(--primary);

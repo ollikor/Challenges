@@ -19,6 +19,7 @@ import { Toast } from "./components/Toast";
 import { Confirm } from "./components/Confirm";
 import { User } from "./components/User";
 import { Settings } from "./components/Settings";
+import { ForgotPassword } from "./components/ForgotPassword";
 
 import "./App.css";
 
@@ -85,6 +86,12 @@ export function App() {
               />
             </Route>
             <Route path="/signup"><SignUp /></Route>
+            <Route path="/forgotpassword">
+              <ForgotPassword 
+                showToast={(value) => showToast(value)}
+                setToastText={(value) => setToastText(value)}
+              />
+            </Route>
             <Route path="/confirm/:username">
               <Confirm
                 showToast={(value) => showToast(value)}

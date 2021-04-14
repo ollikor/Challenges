@@ -8,19 +8,23 @@ export function Confirm(props) {
 
     let history = useHistory();
 
-    const [confirmError, setConfirmError] = useState(false);
+    const [confirmError, setConfirmError] = useState("Confirm code has been sent to your email");
 
     let { username } = useParams();
 
     async function confirm() {
         const code = document.getElementById("code").value;
-        try {
-            await Auth.confirmSignUp(username, code);
-            setToastText('Confirmed');
-            showToast(true);
-            history.push('/signin');
-        } catch (error) {
-            setConfirmError(error.message.split(':').pop());
+        if(code !== "" && code !== undefined) {
+            try {
+                await Auth.confirmSignUp(username, code);
+                setToastText('Confirmed');
+                showToast(true);
+                history.push('/signin');
+            } catch (error) {
+                setConfirmError(error.message.split(':').pop());
+            }
+        } else {
+            setConfirmError("Set a confirm code from email");
         }
     }
 

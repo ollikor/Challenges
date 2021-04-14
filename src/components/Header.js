@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -34,7 +34,7 @@ export function Header(props) {
                     <FontAwesomeIcon icon={faSignInAlt} />
                 </button>
             }
-            <h1 className="Header-title">Challenges</h1>
+            <Link to='/' className="Header-title">Challenges</Link>
             {props.quote !== null ?
                 <div>
                     <p className="Quote-title">{quote.quote}</p>
