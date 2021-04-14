@@ -1,20 +1,26 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-challenges-dev-150821-authRole",
-      "UnauthRoleArn": "arn:aws:iam::781540164866:role/amplify-challenges-dev-150821-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::781540164866:role/amplify-challenges-dev-150821-authRole",
-      "Region": "eu-central-1",
-      "DeploymentBucketName": "amplify-challenges-dev-150821-deployment",
-      "UnauthRoleName": "amplify-challenges-dev-150821-unauthRole",
-      "StackName": "amplify-challenges-dev-150821",
-      "StackId": "arn:aws:cloudformation:eu-central-1:781540164866:stack/amplify-challenges-dev-150821/06231980-87eb-11eb-bc98-0a043198f54c",
-      "AmplifyAppId": "d2c5s2mh73iap5"
-    },
-    "categories": {
-      "auth": {
-        "challenges87e931cf": {}
-      }
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-challenges-dev-150821-authRole",
+            "UnauthRoleArn": "arn:aws:iam::781540164866:role/amplify-challenges-dev-150821-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::781540164866:role/amplify-challenges-dev-150821-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-challenges-dev-150821-deployment",
+            "UnauthRoleName": "amplify-challenges-dev-150821-unauthRole",
+            "StackName": "amplify-challenges-dev-150821",
+            "StackId": "arn:aws:cloudformation:eu-central-1:781540164866:stack/amplify-challenges-dev-150821/06231980-87eb-11eb-bc98-0a043198f54c",
+            "AmplifyAppId": "d2c5s2mh73iap5"
+        },
+        "categories": {
+            "auth": {
+                "challenges87e931cf": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d2c5s2mh73iap5",
+                    "type": "manual"
+                }
+            }
+        }
     }
-  }
 }

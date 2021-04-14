@@ -21,7 +21,6 @@ import { User } from "./components/User";
 import { Settings } from "./components/Settings";
 
 import "./App.css";
-import { Loader } from "./components/Loader";
 
 Amplify.configure(awsconfig);
 

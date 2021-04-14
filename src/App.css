@@ -64,7 +64,7 @@
   flex-direction: column;
   overflow-x: hidden;
   background-color: var(--navbarBackroundColor);
-  box-shadow: -5px 0px 5px var(--boxshadow);
+  box-shadow: -2px 0px 2px var(--boxshadow);
   transition: 1s;
 }
 
