@@ -11,9 +11,14 @@ import { Crown } from "./Crown";
 
 export function Card(props) {
 
-const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } = props;
+const { id, title, startDate, value, refresh } = props;
 
   const [modal, showModal] = useState(false);
+
+  function showStartDate() {
+    const newStartDate = new Date(startDate);
+    return `${newStartDate.getDate()}.${newStartDate.getMonth() + 1}.${newStartDate.getFullYear()}`
+  }
 
   // Check if index of card is even and set correct background.
   function background() {
@@ -112,22 +117,15 @@ const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } 
     }
   }
 
-  async function handleUpdate(id, value, lastLoggedDate, startDate) {
+  async function handleUpdate(id, startDate) {
     try {
       let days;
       const currentDate = new Date();
-      if (value === 0) {
-        days = Math.floor((new Date(currentDate) - new Date(startDate)) / (24 * 60 * 60 * 1000));
-      } else {
-        days = Math.floor((new Date(currentDate) - new Date(lastLoggedDate)) / (24 * 60 * 60 * 1000));
-      }
+
+      days = Math.floor((new Date(currentDate) - new Date(startDate)) / (24 * 60 * 60 * 1000));
       const challenge = { id: id, days: days }
-      if (days > 0) {
-        await API.graphql(graphqlOperation(mutations.updateChallenge, { input: challenge }));
-        refresh();
-      } else {
-        return "Can't log today";
-      }
+      await API.graphql(graphqlOperation(mutations.updateChallenge, { input: challenge }));
+      refresh();
     } catch (error) {
       return error.message
     }
@@ -135,7 +133,7 @@ const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } 
 
   return (
     <button onClick={() => showModal(!modal)} className="Card" style={background()}>
-      <div className="Card-content">Started {startDateString} - {value} days</div>
+      <div className="Card-content">Started {showStartDate()} - {value} days</div>
       <h2 className="Card-title">{title}</h2>
       <Crown status={checkStatus()} value={value} />
       { modal ?
@@ -144,8 +142,6 @@ const { id, title, startDate, startDateString, lastLoggedDate, value, refresh } 
             title={title}
             handleUpdate={() => handleUpdate(
               id,
-              value,
-              lastLoggedDate,
               startDate
             )}
             handleDelete={() => handleDelete(id)}

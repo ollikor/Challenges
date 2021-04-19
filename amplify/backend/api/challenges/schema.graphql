@@ -2,6 +2,6 @@ type Challenge @model @auth(rules: [{ allow: owner}]) {
   id: ID!
   title: String!
   startDate: AWSDateTime!
-  startDateString: String!
+  startDateString: String
   days: Int!
 }

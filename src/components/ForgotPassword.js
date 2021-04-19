@@ -62,7 +62,7 @@ export function ForgotPassword(props) {
                         onFocus={(e) => e.target.select()}
                         className="SignInInput"
                         id="username"
-                        type="text" id="username"
+                        type="text"
                         placeholder="Username"
                     />
                     <button type="button" className="Save-button" onClick={() => sendConfirmCode()}>Change password</button>
@@ -73,7 +73,7 @@ export function ForgotPassword(props) {
                         onFocus={(e) => e.target.select()}
                         className="SignInInput"
                         id="username"
-                        type="text" id="username"
+                        type="text"
                         placeholder="Username"
                     />
                     <input onFocus={(e) => e.target.select()}

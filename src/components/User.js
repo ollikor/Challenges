@@ -31,21 +31,16 @@ export function User() {
 
     async function saveChallenge() {
         if (title !== "") {
-            let dateString;
             let newStartDate;
-            const date = new Date();
             if (startDate !== null) {
                 newStartDate = new Date(startDate);
-                dateString = `${newStartDate.getDate()}.${newStartDate.getMonth()}.${newStartDate.getFullYear()}`
             } else {
                 newStartDate = new Date();
-                dateString = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
             }
             try {
                 const challenge = {
                     title: title,
                     startDate: newStartDate,
-                    startDateString: dateString,
                     days: 0
                 }
                 await API.graphql(graphqlOperation(
@@ -77,8 +72,6 @@ export function User() {
                             id={item.id}
                             title={item.title}
                             startDate={item.startDate}
-                            startDateString={item.startDateString}
-                            lastLoggedDate={item.updatedAt}
                             value={item.days}
                             refresh={() => getData()}
                         />
