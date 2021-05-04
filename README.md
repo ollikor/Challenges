@@ -1,10 +1,14 @@
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-challenges.jpg "challenges")
+Challenges page
 <br/><br/>
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-sign.jpg "sign")
+SignIn page
 <br/><br/>
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-menu.jpg "menu")
+Menu
 <br/><br/>
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-changepwd.jpg "changepwd")
+Change password page
 <br/><br/>
 
 ## Project name
