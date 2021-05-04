@@ -1,13 +1,13 @@
-![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-challenges.jpg "challenges")
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-challenges.jpg "challenges")<br/>
 Challenges page
 <br/><br/>
-![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-sign.jpg "sign")
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-sign.jpg "sign")<br/>
 SignIn page
 <br/><br/>
-![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-menu.jpg "menu")
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-menu.jpg "menu")<br/>
 Menu
 <br/><br/>
-![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-changepwd.jpg "changepwd")
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-changepwd.jpg "changepwd")<br/>
 Change password page
 <br/><br/>
 
