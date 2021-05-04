@@ -1,11 +1,11 @@
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-challenges.jpg "challenges")
-
+<br/>
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-sign.jpg "sign")
-
+<br/>
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-menu.jpg "menu")
-
+<br/>
 ![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-changepwd.jpg "changepwd")
-
+<br/>
 
 ## Project name
 Challenges
