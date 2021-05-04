@@ -1,3 +1,19 @@
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-challenges.jpg "challenges")
+
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-sign.jpg "sign")
+
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-menu.jpg "menu")
+
+![alt text](https://github.com/ollikor/Challenges/blob/master/images/large-changepwd.jpg "changepwd")
+
+
+## Project name
+Challenges
+
+## Description
+Challenges is PWA-application to create challenge and log how many days you have been successful with challenge.
+Application demands to sign in before using.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
